@@ -10,7 +10,7 @@ const onClick = () => {
       <ResizablePanel>
         <Card>
           <CardContent class="h-80">
-            Web Editor
+            <WebEditor />
           </CardContent>
         </Card>
       </ResizablePanel>
