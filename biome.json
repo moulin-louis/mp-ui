@@ -3,12 +3,14 @@
   "files": {
     "ignore": ["node_modules", ".nuxt", ".output", "dist"]
   },
+  "organizeImports": {
+    "enabled": true
+  },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true
-    },
-    "ignore": ["node_modules", ".nuxt", ".output", "dist"]
+    }
   },
   "formatter": {
     "enabled": true,
@@ -20,9 +22,6 @@
       "quoteStyle": "single",
       "semicolons": "always"
     }
-  },
-  "organizeImports": {
-    "enabled": true
   },
   "vcs": {
     "enabled": true,
