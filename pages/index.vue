@@ -5,11 +5,11 @@ const onClick = () => {
 </script>
 
 <template>
-  <div class="m-auto">
+  <div class="m-auto pt-4">
     <ResizablePanelGroup direction="horizontal">
       <ResizablePanel>
         <Card>
-          <CardContent class="h-80">
+          <CardContent>
             <WebEditor />
           </CardContent>
         </Card>

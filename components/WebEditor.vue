@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import type { VueMonacoEditor } from '@guolao/vue-monaco-editor';
 
 const MONACO_EDITOR_OPTIONS = {
   automaticLayout: true,
@@ -9,6 +9,9 @@ const MONACO_EDITOR_OPTIONS = {
 
 const code = ref('x = 42;\nconst y = (x) => {\n\tconsole.log(z)\n}\n');
 </script>
+
 <template>
-  <vue-monaco-editor v-model:value="code" theme="vs-dark" :options="MONACO_EDITOR_OPTIONS" language="javascript" />
+  <div class="h-80 m-2">
+    <VueMonacoEditor v-model:value="code" theme="vs-dark" :options="MONACO_EDITOR_OPTIONS" language="javascript" />
+  </div>
 </template>
