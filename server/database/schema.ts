@@ -1,12 +1,10 @@
 import { pgSchema, serial, text, varchar } from 'drizzle-orm/pg-core';
+import { avaibleTemplates } from '../../constants/framework';
+export const component_schema = pgSchema('component_schema');
 
-export const mySchema = pgSchema('my_schema');
-
-export const colors = mySchema.enum('colors', ['red', 'green', 'blue']);
-
-export const mySchemaUsers = mySchema.table('components', {
+export const ComponentTable = component_schema.table('components', {
   id: serial('id').primaryKey(),
   name: text('name'),
-  framework: varchar('framework', { length: 15 }),
-  code: text('code'),
+  framework: varchar('framework', { length: 15, enum: avaibleTemplates as string[] }),
+  code: text('code').unique(),
 });
