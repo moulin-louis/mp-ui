@@ -1,19 +1,19 @@
 <script lang="ts" setup>
-import {
-  SandpackProvider,
-  SandpackLayout,
-  SandpackFileExplorer,
-  SandpackCodeEditor,
-  SandpackPreview,
-  SANDBOX_TEMPLATES,
-  type SandpackPredefinedTemplate,
-} from 'sandpack-vue3';
 import { Check, ChevronsUpDown } from 'lucide-vue-next';
+import {
+  SANDBOX_TEMPLATES,
+  SandpackCodeEditor,
+  SandpackFileExplorer,
+  SandpackLayout,
+  type SandpackPredefinedTemplate,
+  SandpackPreview,
+  SandpackProvider,
+} from 'sandpack-vue3';
 
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { cn } from '@/lib/utils';
 
 const avaibleTemplates: SandpackPredefinedTemplate[] = [];
 for (const key of Object.keys(SANDBOX_TEMPLATES)) {

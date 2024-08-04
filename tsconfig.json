@@ -1,15 +1,7 @@
 {
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
-    "types": [
-      "sandpack-vue3/global"
-    ]
+    "types": ["sandpack-vue3/global"]
   },
-  "include": [
-    "./types/*.d.ts",
-    "./.nuxt/nuxt.d.ts",
-    "./**/*",
-    "./src/**/*",
-    "./types/*.ts"
-  ]
+  "include": ["./types/*.d.ts", "./.nuxt/nuxt.d.ts", "./**/*", "./src/**/*", "./types/*.ts"]
 }
