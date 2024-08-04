@@ -39,11 +39,7 @@
     "my_schema.colors": {
       "name": "colors",
       "schema": "my_schema",
-      "values": [
-        "red",
-        "green",
-        "blue"
-      ]
+      "values": ["red", "green", "blue"]
     }
   },
   "schemas": {
