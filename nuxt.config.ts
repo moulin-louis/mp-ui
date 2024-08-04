@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: false,
-  compatibilityDate: '2024-04-03',
+  compatibilityDate: '2024-08-04',
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/color-mode', 'shadcn-nuxt', 'nuxt-security'],
   shadcn: {
@@ -22,6 +22,11 @@ export default defineNuxtConfig({
         'script-src': ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
         'connect-src': ["'self'"],
       },
+    },
+  },
+  vite: {
+    define: {
+      'process.env.LOG': {},
     },
   },
 });
