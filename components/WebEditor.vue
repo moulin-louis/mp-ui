@@ -1,17 +1,83 @@
 <script lang="ts" setup>
-import type { VueMonacoEditor } from '@guolao/vue-monaco-editor';
+import {
+  SandpackProvider,
+  SandpackLayout,
+  SandpackFileExplorer,
+  SandpackCodeEditor,
+  SandpackPreview,
+  SANDBOX_TEMPLATES,
+  type SandpackPredefinedTemplate,
+} from 'sandpack-vue3';
+import { Check, ChevronsUpDown } from 'lucide-vue-next';
 
-const MONACO_EDITOR_OPTIONS = {
-  automaticLayout: true,
-  formatOnType: true,
-  formatOnPaste: true,
-};
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
-const code = ref('x = 42;\nconst y = (x) => {\n\tconsole.log(z)\n}\n');
+const avaibleTemplates: SandpackPredefinedTemplate[] = [];
+for (const key of Object.keys(SANDBOX_TEMPLATES)) {
+  if (key === 'nextjs' || key === 'astro' || key === 'node' || key.startsWith('vite')) continue;
+  avaibleTemplates.push(key as SandpackPredefinedTemplate);
+}
+
+const frameworks: { value: SandpackPredefinedTemplate; label: string }[] = avaibleTemplates.map(
+  (it: SandpackPredefinedTemplate) => {
+    const label = it as string;
+    label[0].toUpperCase();
+    return { value: it, label };
+  },
+);
+
+const open = ref(false);
+const value = ref('react');
 </script>
 
 <template>
+  <Popover v-model:open="open">
+    <PopoverTrigger as-child>
+      <Button variant="outline" role="combobox" :aria-expanded="open" class="w-[200px] justify-between">
+        {{ value
+          ? frameworks.find((framework) => framework.value === value)?.label
+          : "Select framework..." }}
+        <ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+      </Button>
+    </PopoverTrigger>
+    <PopoverContent class="w-[200px] p-0">
+      <Command>
+        <CommandInput class="h-9" placeholder="Search framework..." />
+        <CommandEmpty>No framework found.</CommandEmpty>
+        <CommandList>
+          <CommandGroup>
+            <CommandItem v-for="framework in frameworks" :key="framework.value" :value="framework.value" @select="(ev) => {
+              if (typeof ev.detail.value === 'string') {
+                value = ev.detail.value
+              }
+              open = false
+            }">
+              {{ framework.label }}
+              <Check :class="cn(
+                'ml-auto h-4 w-4',
+                value === framework.value ? 'opacity-100' : 'opacity-0',
+              )" />
+            </CommandItem>
+          </CommandGroup>
+        </CommandList>
+      </Command>
+    </PopoverContent>
+  </Popover>
   <div class="h-80 m-2">
-    <VueMonacoEditor v-model:value="code" theme="vs-dark" :options="MONACO_EDITOR_OPTIONS" language="javascript" />
+    <SandpackProvider theme="light" :template="value" :options="{
+      showConsole: true,
+      showConsoleButton: true,
+      activeFile: '/index.js',
+      bundlerURL: 'https://sandpack-bundler.codesandbox.io'
+    }">
+      <SandpackLayout>
+        <SandpackFileExplorer />
+        <SandpackCodeEditor closableTabs showTabs showLineNumbers />
+        <SandpackPreview />
+      </SandpackLayout>
+    </SandpackProvider>
   </div>
 </template>

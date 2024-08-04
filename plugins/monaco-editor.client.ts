@@ -4,7 +4,7 @@ import { defineNuxtPlugin } from '#app';
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(VueMonacoEditorPlugin, {
     paths: {
-      vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs',
+      vs: '/monaco-editor/min/vs',
     },
   });
 });
