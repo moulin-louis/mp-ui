@@ -23,4 +23,9 @@ export default defineNuxtConfig({
       'process.env.LOG': {},
     },
   },
+  nitro: {
+    experimental: {
+      openAPI: true,
+    },
+  },
 });
