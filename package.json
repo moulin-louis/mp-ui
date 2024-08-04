@@ -21,9 +21,7 @@
     "shadcn-nuxt": "^0.10.4",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
-    "vue": "latest",
-    "svelte": "latest",
-    "@sveltejs/adapter-auto": "latest"
+    "vue": "latest"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",

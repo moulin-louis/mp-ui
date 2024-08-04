@@ -8,12 +8,6 @@ export default defineNuxtConfig({
     prefix: '',
     componentDir: './components/ui',
   },
-  plugins: [
-    {
-      src: './plugins/monaco-editor.client.ts',
-      mode: 'client',
-    },
-  ],
   security: {
     corsHandler: false,
     headers: {
