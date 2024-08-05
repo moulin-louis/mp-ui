@@ -1,7 +1,8 @@
 <script setup lang="ts">
-const onClick = () => {
-  console.log('hello');
-};
+const { $component } = useNuxtApp();
+$component('/components').then((res) => {
+  console.log('x = ', res);
+});
 </script>
 
 <template>

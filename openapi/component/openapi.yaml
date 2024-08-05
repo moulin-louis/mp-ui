@@ -1,0 +1,146 @@
+openapi: 3.0.0
+info:
+  title: Component  API
+  version: 1.0.0
+  description: API for managing UI components
+  servers:
+    - url: https://api.yourcomponentmarket.com/v1/components
+paths:
+  /components:
+    get:
+      summary: List all components
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Component'
+    post:
+      summary: Create a new component
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComponentInput'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Component'
+  /components/{id}:
+    get:
+      summary: Get a specific component
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Component'
+    put:
+      summary: Update a component
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComponentInput'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Component'
+    delete:
+      summary: Delete a component
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Successful deletion
+  /search:
+    get:
+      summary: Search components
+      parameters:
+        - in: query
+          name: q
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Component'
+components:
+  schemas:
+    Component:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        framework:
+          type: string
+        category:
+          type: string
+        version:
+          type: string
+        code:
+          type: string
+        creatorId:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    ComponentInput:
+      type: object
+      required:
+        - name
+        - framework
+        - code
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        framework:
+          type: string
+        category:
+          type: string
+        version:
+          type: string
+        code:
+          type: string
