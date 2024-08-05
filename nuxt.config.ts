@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     clients: {
       component: {
         baseURL: 'http://localhost:3000/api/component',
+        schema: './server/openapi/component/openapi.yaml',
       },
     },
   },
