@@ -3,10 +3,18 @@ export default defineNuxtConfig({
   ssr: false,
   compatibilityDate: '2024-08-04',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/color-mode', 'shadcn-nuxt', 'nuxt-security'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/color-mode', 'shadcn-nuxt', 'nuxt-security', 'nuxt-open-fetch'],
   shadcn: {
     prefix: '',
     componentDir: './components/ui',
+  },
+  openFetch: {
+    clients: {
+      component: {
+        baseURL: 'http://localhost:3000/api/component',
+        schema: './server/openapi/component/openapi.yaml',
+      },
+    },
   },
   security: {
     corsHandler: false,
