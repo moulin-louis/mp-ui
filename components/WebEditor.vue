@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { Check, ChevronsUpDown } from 'lucide-vue-next';
 import {
-  SANDBOX_TEMPLATES,
   SandpackCodeEditor,
   SandpackFileExplorer,
   SandpackLayout,
@@ -14,15 +13,7 @@ import { Button } from '@/components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
-
-const avaibleTemplates: SandpackPredefinedTemplate[] = [];
-for (const key of Object.keys(SANDBOX_TEMPLATES)) {
-  //filter out non free-template
-  if (key === 'nextjs' || key === 'astro' || key === 'node' || key.startsWith('vite')) continue;
-  //filter unwanted/broken template
-  if (key === 'solid' || key === 'test-ts') continue;
-  avaibleTemplates.push(key as SandpackPredefinedTemplate);
-}
+import { avaibleTemplates } from '../constants/framework';
 
 const frameworks: { value: SandpackPredefinedTemplate; label: string }[] = avaibleTemplates.map(
   (it: SandpackPredefinedTemplate) => {
